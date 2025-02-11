@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | Srinath Kethavath</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body data-theme="light">
+    <aside class="sidebar">
+        <img src="{{ '/images/sri.png' | relative_url }}" alt="Profile Picture" class="profile-img">
+        <nav>
+            <ul>
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#work-experience"><i class="fas fa-briefcase"></i> Work Experience</a></li>
+                <li><a href="#projects"><i class="fas fa-code"></i> Projects</a></li>
+                <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
+                <li><a href="#tableau"><i class="fas fa-chart-bar"></i> Tableau</a></li>
+                <li><a href="#what-drives-me"><i class="fas fa-rocket"></i> What Drives Me</a></li>
+                <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+            <i class="fas fa-adjust"></i> Dark Mode
+        </button>
+    </aside>
+
+    <main class="content">
+        <section id="home">
+            <h1>Srinath Kethavath, Data Engineer</h1>
+            <p>
+                From ETL pipelines to real-time analytics, I build solutions that drive decisions.
+                Take a closer look at how data engineering meets innovation!
+            </p>
+        </section>
+
+        <section id="work-experience">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="work-experience">
+                <div class="work-item">
+                    <h3>Logix Federal Credit Union</h3>
+                    <p>Data Engineer</p>
+                    <p>Tools: Databricks, Azure(Synapse, Cosmos DB, ADF, Data Lake, HDInsight, Blob storage), Apache
+                        Spark, Python/Scala, Kubernetes, Docker, Jenkins.</p>
+                </div>
+                <div class="work-item">
+                    <h3>Inland Empire Health Plan</h3>
+                    <p>ETL Developer</p>
+                    <p>Tools: API Automation, AWS EMR, Lambda, Glue, Redshift, Spark, Flume, ETL, AWS, Oozie, Sqoop,
+                        Oracle, Talend, Control-M, Denodo.</p>
+                </div>
+                <div class="work-item">
+                    <h3>Boston Consulting Group</h3>
+                    <p>Data Engineer</p>
+                    <p>Tools: Snowflake, Spark, Kafka, Python, AWS, Hive, Ansible, Shell Scripting, Linux, Debugging
+                        code CI/CD, Terraform.</p>
+                </div>
+                <div class="work-item">
+                    <h3>Bain & Company</h3>
+                    <p>Data and Business Analyst</p>
+                    <p>Skills : SQLServer, InformaticaCloud, VisualStudio, BitbuckeJira, Confluence, Jenkins, Kafka,
+                        Tableau, Looker Studios.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects">
+                <div class="project-item">
+                    <h3>AI Powered Location Feasibility Analysis</h3>
+                    <p>Analysis of location based business feasibility. <a
+                            href="https://github.com/srinath-keth/AI-Business-Location-Feasibility">View on GitHub</a>
+                    </p>
+                </div>
+                <div class="project-item">
+                    <h3>Football Stadiums Data Analytics</h3>
+                    <p>Data engineering and analytics on football stadiums. <a
+                            href="https://github.com/srinath-keth/Football-data-engineering-project">View on
+                            GitHub</a></p>
+                </div>
+                <div class="project-item">
+                    <h3>Real-time Stock Market Analysis using Kafka</h3>
+                    <p>Real-time analysis of stock market data using Kafka. <a
+                            href="https://github.com/srinath-keth/Real-time-stock-market-analysis-kafka">View on
+                            GitHub</a></p>
+                </div>
+                <div class="project-item">
+                    <h3>Real-Time and Batch Data Pipelines with Kafka</h3>
+                    <p>Implementation of real-time and batch data pipelines using Kafka. <a
+                            href="https://github.com/srinath-keth/Real-Time-and-Batch-Data-Pipelines-with-Kafka">View on
+                            GitHub</a></p>
+                </div>
+                <div class="project-item">
+                    <h3>Telecom Customer Churn Prediction</h3>
+                    <p>Prediction of customer churn in the telecom industry. <a
+                            href="https://github.com/srinath-keth/Telecom-Customer-Churn-Prediction/tree/main">View on
+                            GitHub</a></p>
+                </div>
+                <div class="project-item">
+                    <h3>Uber Taxi Data Analytics</h3>
+                    <p>Data analytics on Uber taxi data. <a
+                            href="https://github.com/srinath-keth/Uber-data-analytics">View on GitHub</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills">
+                <span class="skill">Python</span>
+                <span class="skill">SQL</span>
+                <span class="skill">Databricks</span>
+                <span class="skill">Azure</span>
+                <span class="skill">AWS</span>
+                <span class="skill">Kafka</span>
+                <span class="skill">Spark</span>
+                <span class="skill">Tableau</span>
+            </div>
+        </section>
+
+        <section id="tableau">
+            <h2 class="section-title">Tableau Public Dashboards</h2>
+            <p>
+                Check out my data visualizations on Tableau Public:
+                <a href="https://public.tableau.com/app/profile/srinath.keth" target="_blank">View My
+                    Dashboards</a>
+            </p>
+        </section>
+
+        <section id="what-drives-me">
+            <h2 class="section-title">What Drives Me</h2>
+            <p>
+                I'm deeply passionate about the transformative power of data science, artificial intelligence, and
+                machine learning. I'm fascinated by the ability of these technologies to uncover hidden patterns, drive
+                innovation, and solve complex problems. My goal is to leverage my skills in data engineering to build
+                robust, scalable solutions that enable data scientists and machine learning engineers to push the
+                boundaries of what's possible.
+            </p>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <ul class="no-bullets">
+                <li>
+                    <h3>Master's in Business Analytics</h3>
+                    <p>California State University, East Bay (2023-2024)</p>
+                    <p>Relevant Coursework: Big Data Technologies, Data Mining, Machine Learning, Cloud Computing, Data
+                        Visualization</p>
+                </li>
+                <li>
+                    <h3>Bachelor's in Mechanical and Robotics Engineering</h3>
+                    <p>University College of Engineering, Osmania University</p>
+                    <p>Relevant Coursework: Data Structures, Algorithms, Database Management Systems, Computer
+                        Networks</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Contact</h2>
+            <p>Connect with me:</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/srinath-kethavath-9587aa204/" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/srinath-keth" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:srinath.keth@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+</body>
+
+</html>
