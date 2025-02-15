@@ -1,0 +1,14 @@
+theme: jekyll-theme-primer
+title: Srinath's Portfolio
+description: "Personal Website for Data Engineering Portfolio"
+baseurl: ""
+url: "https://srinathketh.github.io"
+
+# Enable plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-gist
+  - jekyll-paginate
+  - jekyll-relative-links
+  - jekyll-default-layout
+  - jekyll-titles-from-headings
