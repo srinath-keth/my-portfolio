@@ -7,11 +7,12 @@
     <title>Srinath Kethavath - Data Engineer</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/aos.css">
-    <link rel="stylesheet" href="assets/css/line-awesome.min.css">
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="assets/line-awesome.min.css">
+    <!-- Add Line Awesome CDN -->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <!-- Add new Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Space+Grotesk:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700,800&family=Space+Grotesk:wght@400;700&family=Poppins:wght@300;400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* CSS Variables */
         :root {
@@ -29,6 +30,11 @@
             /* Fonts */
             --main-font: 'Poppins', sans-serif;
             --secondary-font: 'Raleway', sans-serif;
+            --tertiary-font: 'Roboto', sans-serif;
+            --title-font: 'Montserrat', sans-serif;
+            --heading-font: 'Space Grotesk', sans-serif;
+            --body-font: 'Poppins', sans-serif;
+            --gradient-bg: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
         }
 
         /* Dark Mode */
@@ -78,14 +84,16 @@
             left: 0;
             width: 250px;
             height: 100vh;
-            background-color: var(--sidebar-bg);
+            background-color: #1a1a1a;
             color: var(--sidebar-text-color);
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             z-index: 100;
-            /* Ensure sidebar stays on top */
+            overflow-y: auto;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            /* Ensure sidebar is scrollable */
         }
 
         .profile-img-container {
@@ -127,6 +135,26 @@
             transition: background-color 0.3s;
         }
 
+        .nav-links li a {
+            font-size: 1.1rem;
+            color: #fff;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li a i {
+            font-size: 1.3rem;
+            min-width: 25px;
+            margin-right: 15px;
+        }
+
         .nav-links a:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
@@ -147,13 +175,19 @@
             align-items: center;
             justify-content: center;
             margin: 0 5px;
-            color: var(--sidebar-text-color);
+            color: var (--sidebar-text-color);
             transition: var(--transition);
+            font-size: 20px;
+            /* Ensure icons are visible */
+            transform: scale(1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         .social-icons a:hover {
             background-color: var(--accent);
             color: var(--sidebar-bg);
+            transform: scale(1.2);
+            background: var(--gradient-bg);
         }
 
         /* Main Content */
@@ -172,6 +206,11 @@
         .section-title {
             margin-bottom: 30px;
             text-align: center;
+            font-family: var(--title-font);
+            background: var(--gradient-bg);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 8s ease infinite;
         }
 
         /* Work Experience */
@@ -185,7 +224,7 @@
             width: 300px;
             margin: 20px;
             padding: 20px;
-            background-color: var(--card-bg);
+            background-color: var (--card-bg);
             border-radius: 10px;
             box-shadow: 0 4px 8px var(--shadow-color);
             transition: transform 0.3s;
@@ -205,8 +244,9 @@
         /* Projects */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
         }
 
         .project-card {
@@ -214,14 +254,18 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px var(--shadow-color);
             padding: 20px;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
             cursor: pointer;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            height: 400px;
+            margin: 0;
         }
 
         .project-card img {
@@ -229,28 +273,33 @@
             height: 200px;
             object-fit: cover;
             border-radius: 5px;
-            margin-bottom: 10px;
-            filter: blur(5px);
-            /* Initial blur */
             transition: filter 0.3s;
-        }
-
-        .project-card.unblur img {
-            filter: none;
-            /* Remove blur */
         }
 
         .project-card h3 {
             margin-bottom: 5px;
+            font-family: var(--tertiary-font);
         }
 
         .project-card p {
             margin-bottom: 10px;
             flex-grow: 1;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: opacity 0.3s;
+            opacity: 0;
         }
 
         .project-card a {
-            display: inline-block;
+            display: none;
             padding: 8px 15px;
             background-color: var(--primary);
             color: var(--sidebar-text-color);
@@ -258,40 +307,78 @@
             transition: background-color 0.3s;
         }
 
-        .project-card a:hover {
-            background-color: var(--accent);
+        .project-card:hover p,
+        .project-card:hover a {
+            display: block;
+            opacity: 1;
         }
 
-        /* Tableau Dashboards Section */
-        #tableau {
-            background-color: var(--bg-color);
+        .project-card:hover img {
+            filter: blur(5px);
         }
 
-        .tableau-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .tableau-item {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px var(--shadow-color);
-            padding: 20px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .tableau-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px var(--shadow-color);
-        }
-
-        .tableau-item iframe {
+        .project-card .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 400px;
-            border: none;
-            border-radius: 5px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover .overlay {
+            opacity: 1;
+        }
+
+        .project-description {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-bg);
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .project-card:hover .project-description {
+            opacity: 0.95;
+            transform: translateY(0);
+        }
+
+        .project-description a {
+            display: inline-block;
+            padding: 0.8em 1.6em;
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 30px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .project-description a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* Education */
@@ -406,6 +493,628 @@
                 /* Stack on smaller screens */
             }
         }
+
+        /* Add animations */
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Scroll reveal animation */
+        [data-aos] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        :root {
+            /* Modern Color Palette */
+            --primary: #1a237e;
+            --secondary: #0d47a1;
+            --accent: #2962ff;
+            --dark: #121212;
+            --light: #fafafa;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            
+            /* Typography */
+            --title-font: 'Montserrat', sans-serif;
+            --heading-font: 'Space Grotesk', sans-serif;
+            --body-font: 'Inter', sans-serif;
+            --code-font: 'Poppins', monospace;
+            
+            /* Other Variables */
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dark-mode {
+            --primary: #2962ff;
+            --secondary: #448aff;
+            --accent: #82b1ff;
+            --dark: #fafafa;
+            --light: #121212;
+        }
+
+        /* Update Typography Styles */
+        h1 {
+            font-family: var(--title-font);
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: var(--heading-font);
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-family: var(--body-font);
+            line-height: 1.6;
+        }
+
+        /* Project Grid Layout Fix */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        /* Add Tableau Dashboard Section */
+        .tableau-dashboard {
+            width: 100%;
+            margin: 2rem 0;
+            background: var(--light);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .tableau-dashboard iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+
+        /* Enhanced Project Card Styles */
+        .project-card {
+            position: relative;
+            background: var(--light);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .project-description {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .project-card:hover .project-description {
+            opacity: 0.98;
+            visibility: visible;
+        }
+
+        .project-description p {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-description a {
+            background: rgba(255, 255, 255, 0.2);
+            color: var (--light);
+            padding: 0.8rem 1.6rem;
+            border-radius: 2rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .project-description a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Update sidebar styling */
+        .sidebar {
+            // ...existing code...
+            background-color: #1a1a1a;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links li a {
+            font-size: 1.1rem;
+            color: #fff;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-links li a i {
+            font-size: 1.3rem;
+        }
+
+        /* Dynamic About Section */
+        .about-content {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .wave-hello {
+            display: inline-block;
+            font-size: 3rem;
+            animation: wave 2s infinite;
+            transform-origin: 70% 70%;
+        }
+
+        .hero-text {
+            font-family: var(--title-font);
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .tagline {
+            font-size: 2rem;
+            color: var(--accent);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.5s;
+        }
+
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Project Grid Fixes */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .project-card {
+            height: 400px;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Fix sidebar nav links alignment */
+        .nav-links li a {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 12px 15px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li a i {
+            min-width: 24px;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Enhanced Project Cards */
+        .project-card {
+            // ...existing code...
+            backdrop-filter: blur(0);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            backdrop-filter: blur(5px);
+        }
+
+        .project-card img {
+            height: 220px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Fix pipeline project image */
+        .project-card[data-project="pipeline"] img {
+            object-position: top center;
+            object-fit: cover;
+        }
+
+        /* Add these new animations and styles */
+        .glitch-text {
+            position: relative;
+            animation: glitch 1s linear infinite;
+        }
+
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .skill-tag {
+            padding: 8px 15px;
+            background: var(--gradient-bg);
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .btn-glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px var(--accent); }
+            50% { box-shadow: 0 0 20px var(--accent); }
+        }
+
+        .mega-title {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .animate-text {
+            display: inline-block;
+            background: var(--gradient-bg);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: titleReveal 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .parallax-section {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .education-item {
+            transform: translateZ(0);
+            transition: transform 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateZ(50px) scale(1.05);
+        }
+
+        @keyframes titleReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced 3D Effects */
+        .perspective-container {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(41,98,255,0.1), rgba(26,35,126,0.1));
+            transform: translateZ(-50px);
+            pointer-events: none;
+        }
+
+        .text-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            opacity: 0;
+            transform: translateZ(-100px);
+            animation: textFloat 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+
+        .text-3d-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: block;
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            transform: translateZ(-100px);
+            animation: nameReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        .hero-title {
+            position: relative;
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        .btn-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.3s;
+        }
+
+        .btn-3d::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: var(--gradient-bg);
+            transform: translateZ(-10px);
+            border-radius: inherit;
+            filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-5px) translateZ(20px);
+        }
+
+        .btn-3d:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes textFloat {
+            0% {
+                opacity: 0;
+                transform: translateZ(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateZ(0);
+            }
+        }
+
+        @keyframes nameReveal {
+            0% {
+                opacity: 0;
+                transform: translateZ(-100px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateZ(0) scale(1);
+            }
+        }
+
+        .text-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: revealText 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes revealText {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
+
+        .greeting-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .wave-emoji {
+            font-size: 3.5rem;
+            animation: wave 2.5s infinite;
+            transform-origin: 70% 70%;
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        .name-highlight {
+            display: block;
+            font-size: 5.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-top: 0.5rem;
+        }
+
+        .first-name, .last-name {
+            display: inline-block;
+            position: relative;
+            background: linear-gradient(135deg, #2962ff 0%, #4f8bbd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s;
+        }
+
+        .first-name:hover, .last-name:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .role-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #2962ff 0%, #1a237e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .accent-text {
+            color: #4f8bbd;
+            display: block;
+            font-size: 2rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .hero-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin: 2rem 0;
+        }
+
+        .highlight-text {
+            color: #2962ff;
+            font-weight: 500;
+        }
+
+        .emphasis-text {
+            color: #1a237e;
+            font-weight: 600;
+        }
+
+        .animated-text {
+            display: inline-block;
+            position: relative;
+            color: #4f8bbd;
+            font-style: italic;
+        }
+
+        .btn-animated {
+            position: relative;
+            padding: 1rem 2rem;
+            margin: 0 1rem;
+            border-radius: 50px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2962ff 0%, #1a237e 100%);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2962ff;
+            border: 2px solid #2962ff;
+        }
+
+        .btn-animated:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(41, 98, 255, 0.2);
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            20% { transform: rotate(15deg); }
+            40% { transform: rotate(0deg); }
+            60% { transform: rotate(15deg); }
+        }
     </style>
 </head>
 
@@ -419,15 +1128,14 @@
     <!-- Fixed Sidebar -->
     <aside class="sidebar">
         <div class="profile-img-container">
-            <img src="/images/sri.png" alt="Profile Picture" class="profile-img">
+            <img src="./images/IMG_0432.png" alt="Profile Picture" class="profile-img">
         </div>
         <ul class="nav-links">
-            <li><a href="#home"><i class="las la-home"></i> Home</a></li>
-            <li><a href="#workex"><i class="las la-briefcase"></i> Work Experience</a></li>
-            <li><a href="#projects"><i class="las la-project-diagram"></i> Projects</a></li>
-            <li><a href="#tableau"><i class="las la-chart-pie"></i> Tableau Dashboards</a></li>
-            <li><a href="#education"><i class="las la-graduation-cap"></i> Education</a></li>
-            <li><a href="#contact"><i class="las la-envelope"></i> Contact</a></li>
+            <li><a href="#home"><i class="las la-home"></i>Home</a></li>
+            <li><a href="#workex"><i class="las la-briefcase"></i>Work Experience</a></li>
+            <li><a href="#projects"><i class="las la-project-diagram"></i>Projects</a></li>
+            <li><a href="#education"><i class="las la-graduation-cap"></i>Education</a></li>
+            <li><a href="#contact"><i class="las la-envelope"></i>Contact</a></li>
         </ul>
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/srinath-kethavath-9587aa204/"><i class="lab la-linkedin-in"></i></a>
@@ -439,31 +1147,39 @@
     <!-- Main Content -->
     <div class="content">
         <!-- Home Section -->
-        <section id="home">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10">
-                        <h1 class="text-uppercase display-4 fw-bold animate__animated animate__fadeInUp"
-                            data-aos="fade-up">
-                            I'm Srinath Kethavath, a Data Engineer
-                            <span class="text-brand">turning Raw Data into Real Insights</span>
-                        </h1>
-                        <p class="lead mt-2 mb-3 fs-3 animate__animated animate__fadeInUp" data-aos="fade-up"
-                            data-aos-delay="300">
-                            From ETL pipelines to real-time analytics, I build solutions that drive decisions. Take a
-                            closer look at how data engineering meets innovation!
-                        </p>
-                        <div class="animate__animated animate__fadeInUp" data-aos="fade-up" data-aos-delay="600">
-                            <a href="#work" class="btn btn-brand fw-bold me-4">EXPLORE MY PROJECTS</a>
-                            <div class="social-icons col-auto" style="margin-top: 20px;">
-                                <a href="https://www.linkedin.com/in/srinath-kethavath-9587aa204/"><i
-                                        class="lab la-linkedin-in"></i></a>
-                                <a href="https://github.com/srinath-keth"><i class="lab la-github"></i></a>
-                                <a href="mailto:srinath.keth@gmail.com"><i class="las la-envelope"
-                                        style="font-size: 25px;"></i></a>
-                            </div>
-                        </div>
-                    </div>
+        <section id="home" class="hero-section perspective-container">
+            <div class="parallax-bg"></div>
+            <div class="hero-content">
+                <div class="greeting-container">
+                    <span class="wave-emoji" role="img" aria-label="wave">👋</span>
+                    <h1 class="hero-title">
+                        Hi! I'm <br>
+                        <span class="name-highlight">
+                            <span class="first-name" data-text="Srinath">Srinath</span>
+                            <span class="last-name" data-text="Kethavath">Kethavath</span>
+                        </span>
+                    </h1>
+                </div>
+                
+                <div class="role-wrapper" data-aos="fade-up" data-aos-delay="400">
+                    <h2 class="role-title">
+                        <span class="gradient-text">A Data Engineer</span>
+                        <span class="accent-text">turning raw data into powerful insights</span>
+                    </h2>
+                </div>
+
+                <div class="description-wrapper" data-aos="fade-up" data-aos-delay="800">
+                    <p class="hero-description">
+                        <span class="highlight-text">From ETL pipelines to real-time analytics,</span>
+                        <span class="emphasis-text">I build solutions that drive decisions.</span>
+                        <br>
+                        <span class="animated-text">Let's explore how data engineering meets innovation!</span>
+                    </p>
+                </div>
+
+                <div class="cta-wrapper" data-aos="fade-up" data-aos-delay="1200">
+                    <a href="#projects" class="btn-primary btn-animated">View My Work</a>
+                    <a href="#contact" class="btn-secondary btn-animated">Let's Connect</a>
                 </div>
             </div>
         </section>
@@ -471,35 +1187,31 @@
         <!-- Work Experience Section -->
         <section id="workex">
             <div class="container">
-                <h2 class="section-title">Work Experience</h2>
+                <h2 class="section-title font-space-grotesk">Work Experience</h2>
                 <div class="work-experience">
-                    <div class="work-item">
+                    <div class="work-item glassmorphism">
                         <i class="las la-chart-bar company-icon"></i>
-                        <h3>Logix Federal Credit Union</h3>
-                        <p>Data Engineer</p>
-                        <p>Tools: Databricks, Azure(Synapse, Cosmos DB, ADF, Data Lake, HDInsight, Blob storage),
-                            Apache Spark, , Python/Scala, Kubernetes, Docker, Jenkins.</p>
+                        <h3 class="font-montserrat">Logix Federal Credit Union</h3>
+                        <p class="role font-space-grotesk">Data Engineer</p>
+                        <p class="tools font-inter">Tools: Databricks, Azure(Synapse, Cosmos DB, ADF, Data Lake, HDInsight), Apache Spark, Python/Scala, Kubernetes, Docker, Jenkins</p>
                     </div>
-                    <div class="work-item">
+                    <div class="work-item glassmorphism">
                         <i class="las la-server company-icon"></i>
-                        <h3>Inland Empire Health Plan</h3>
-                        <p>ETL Developer</p>
-                        <p>Tools:API Automation, AWS EMR, Lambda, Glue, Redshift, Spark, Flume, ETL, AWS, Oozie,
-                            Sqoop, Oracle,Talend, Control-M, Denodo.</p>
+                        <h3 class="font-montserrat">Inland Empire Health Plan</h3>
+                        <p class="role font-space-grotesk">ETL Developer</p>
+                        <p class="tools font-inter">Tools:API Automation, AWS EMR, Lambda, Glue, Redshift, Spark, Flume, ETL, AWS, Oozie, Sqoop, Oracle,Talend, Control-M, Denodo.</p>
                     </div>
-                    <div class="work-item">
+                    <div class="work-item glassmorphism">
                         <i class="las la-cogs company-icon"></i>
-                        <h3>Boston Consulting Group</h3>
-                        <p>Data Engineer</p>
-                        <p>Tools: Snowflake, Spark, Kafka, Python, AWS, Hive, Ansible, Shell Scripting,Linux,
-                            Debugging code CI/CD, Terraform</p>
+                        <h3 class="font-montserrat">Boston Consulting Group</h3>
+                        <p class="role font-space-grotesk">Data Engineer</p>
+                        <p class="tools font-inter">Tools: Snowflake, Spark, Kafka, Python, AWS, Hive, Ansible, Shell Scripting,Linux, Debugging code CI/CD, Terraform</p>
                     </div>
-                    <div class="work-item">
+                    <div class="work-item glassmorphism">
                         <i class="las la-sliders-h company-icon"></i>
-                        <h3>Bain & Company</h3>
-                        <p>Data and Business Analyst</p>
-                        <p>Skills : SQLServer, InformaticaCloud, VisualStudio, BitbuckeJira, Confluence, Jenkins,
-                            Kafka, ,Tableau, Looker Studios</p>
+                        <h3 class="font-montserrat">Bain & Company</h3>
+                        <p class="role font-space-grotesk">Data and Business Analyst</p>
+                        <p class="tools font-inter">Skills : SQLServer, InformaticaCloud, VisualStudio, BitbuckeJira, Confluence, Jenkins, Kafka, ,Tableau, Looker Studios</p>
                     </div>
                 </div>
             </div>
@@ -510,87 +1222,124 @@
             <div class="container">
                 <h2 class="section-title">Projects</h2>
                 <div class="project-grid">
-                    <div class="project-card" onclick="unblurProject(this)">
-                        <img src="./images/ai-loc.png" alt="AI Location Feasibility"
+                    <!-- Other project cards with data-aos="fade-up" -->
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="./images/ai-loc.png" alt="AI Powered Location Feasibility"
                             onload="this.classList.remove('image-loading')" class="card-img">
                         <h3>AI Powered Location Feasibility Analysis</h3>
-                        <p>Analysis of location based business feasibility.</p>
-                        <a href="https://github.com/srinath-keth/AI-Business-Location-Feasibility">View on
-                            GitHub</a>
+                        <div class="project-description">
+                            <p>A SaaS platform that uses AI & Machine Learning to help businesses find optimal locations by analyzing demographics, traffic, and competitor data. It predicts success potential and provides data-driven site recommendations.</p>
+                            <a href="https://github.com/srinath-keth/AI-Business-Location-Feasibility" target="_blank">View on GitHub</a>
+                        </div>
                     </div>
-                    <div class="project-card" onclick="unblurProject(this)">
+                    <div class="project-card" data-aos="fade-up">
                         <img src="./images/football.png" alt="Football Stadiums Data Analytics"
                             onload="this.classList.remove('image-loading')" class="card-img">
-                        <h3>Football Stadiums Data Analytics</h3>
-                        <p>Data engineering and analytics on football stadiums.</p>
-                        <a href="https://github.com/srinath-keth/Football-data-engineering-project">View on
-                            GitHub</a>
+                        <h3>Football Data Engineering</h3>
+                        <div class="project-description">
+                            <p>An automated data pipeline that extracts, cleans, and transforms football-related data using Apache Airflow, Docker, and PostgreSQL. The project enables real-time and historical analysis for sports analytics, BI dashboards, and ML models.</p>
+                            <a href="https://github.com/srinath-keth/Football-data-engineering-project" target="_blank">View on GitHub</a>
+                        </div>
                     </div>
-                    <div class="project-card" onclick="unblurProject(this)">
+                    <div class="project-card" data-aos="fade-up">
                         <img src="./images/stock.png" alt="Real-time Stock Market Analysis using Kafka"
                             onload="this.classList.remove('image-loading')" class="card-img">
-                        <h3>Real-time Stock Market Analysis using Kafka</h3>
-                        <p>Real-time analysis of stock market data using Kafka.</p>
-                        <a href="https://github.com/srinath-keth/Real-time-stock-market-analysis-kafka">View on
-                            GitHub</a>
+                        <h3>Real-time Stock Market Analysis with Kafka</h3>
+                        <div class="project-description">
+                            <p>An end-to-end data engineering pipeline that processes real-time stock market data using Kafka, AWS Glue, Athena, and SQL, enabling high-frequency market analysis.</p>
+                            <a href="https://github.com/srinath-keth/Real-time-stock-market-analysis-kafka" target="_blank">View on GitHub</a>
+                        </div>
                     </div>
-                
-                    </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up">
                         <img src="./images/pipeline.png" alt="Real-Time and Batch Data Pipelines with Kafka"
                             onload="this.classList.remove('image-loading')" class="card-img">
                         <h3>Real-Time and Batch Data Pipelines with Kafka</h3>
-                        <p>Implementation of real-time and batch data pipelines using Kafka.</p>
-                        <a href="https://github.com/srinath-keth/Real-Time-and-Batch-Data-Pipelines-with-Kafka">View on
-                            GitHub</a>
+                        <div class="project-description">
+                            <p>Designed a real-time & batch processing pipeline using Kafka, PostgreSQL, and Docker, processing stock price & sales trend data for efficient analytics and reporting.</p>
+                            <a href="https://github.com/srinath-keth/Real-Time-and-Batch-Data-Pipelines-with-Kafka" target="_blank">View on GitHub</a>
+                        </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up">
                         <img src="./images/Customerchurn.png" alt="Telecom Customer Churn Prediction"
                             onload="this.classList.remove('image-loading')" class="card-img">
-                        <h3>Telecom Customer Churn Prediction</h3>
-                        <p>Prediction of customer churn in the telecom industry.</p>
-                        <a href="https://github.com/srinath-keth/Telecom-Customer-Churn-Prediction/tree/main">View on
-                            GitHub</a>
+                        <h3>Customer Churn Prediction for Telecom Company</h3>
+                        <div class="project-description">
+                            <p>Built machine learning models (K-NN, Decision Tree, Random Forest, Logistic Regression) to predict customer churn in telecom services, achieving 95% validation accuracy.</p>
+                            <a href="https://github.com/srinath-keth/Telecom-Customer-Churn-Prediction/tree/main" target="_blank">View on GitHub</a>
+                        </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up">
                         <img src="./images/uber.jpg" alt="Uber Taxi Data Analytics"
                             onload="this.classList.remove('image-loading')" class="card-img">
-                        <h3>Uber Taxi Data Analytics</h3>
-                        <p>Data analytics on Uber taxi data.</p>
-                        <a href="https://github.com/srinath-keth/Uber-data-analytics">View on GitHub</a>
+                        <h3>Uber Data Analytics</h3>
+                        <div class="project-description">
+                            <p>Analyzed Uber ride data using Google Cloud (GCP), BigQuery, and Looker Studio to uncover trip patterns, demand trends, and customer insights for business intelligence.</p>
+                            <a href="https://github.com/srinath-keth/Uber-data-analytics" target="_blank">View on GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="./images/news.png" alt="News-Bot: AI-Powered News Research Tool"
+                            onload="this.classList.remove('image-loading')" class="card-img">
+                        <h3>News-Bot: AI-Powered News Research Tool</h3>
+                        <div class="project-description">
+                            <p>Developed an AI-powered research tool that extracts, embeds, and retrieves news articles using FAISS, OpenAI GPT, and Streamlit, enabling intelligent Q&A from news sources.</p>
+                            <a href="https://github.com/srinath-keth/News-Bot" target="_blank">View on GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="./images/spotify.png" alt="Spotify Song Popularity Prediction"
+                            onload="this.classList.remove('image-loading')" class="card-img">
+                        <h3>Spotify Song Popularity Prediction</h3>
+                        <div class="project-description">
+                            <p>Used data mining & machine learning to analyze Spotify’s song popularity trends, uncovering key factors influencing listener preferences and improving music recommendations.</p>
+                            <a href="https://github.com/srinath-keth/Spotify-Song-Popularity-Prediction" target="_blank">View on GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="./images/medical.png" alt="Patient Medical Cost Prediction"
+                            onload="this.classList.remove('image-loading')" class="card-img">
+                        <h3>Patient Medical Cost Prediction</h3>
+                        <div class="project-description">
+                            <p>Built ML models to predict medical insurance costs based on age, BMI, smoking habits, and demographics, utilizing EDA, feature engineering, and SHAP values for insights.</p>
+                            <a href="https://github.com/srinath-keth/Patient-Medical-Cost-Prediction" target="_blank">View on GitHub</a>
+                        </div>
+                    </div>
+                    <!-- Tableau Dashboard -->
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="./images/tab.png" alt="Tableau Dashboards" class="card-img">
+                        <h3>Interactive Tableau Dashboards</h3>
+                        <div class="project-description">
+                            <p>Collection of interactive data visualizations and analytics dashboards built using Tableau.</p>
+                            <a href="https://public.tableau.com/app/profile/srinath.kethavath/vizzes" target="_blank" class="project-link">View Dashboards</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="tableau">
-            <div class="container">
-                <h2 class="section-title">Tableau Dashboards</h2>
-                <div class="tableau-grid">
-                    <div class="tableau-item">
-                        <iframe
-                            src="https://public.tableau.com/app/profile/srinath.kethavath/vizzes"
-                            title="Tableau Dashboard"></iframe>
-                    </div>
-                    <!-- Add more Tableau dashboards here -->
-                </div>
-            </div>
-        </section>
+
         <!-- Education Section -->
-        <section id="education">
+        <section id="education" class="parallax-section">
             <div class="container">
                 <h2 class="section-title">Education</h2>
                 <ul class="education-list">
-                    <li class="education-item">
-                        <h3>Master's in Business Analytics</h3>
-                        <p>California State University, East Bay (2023-2024)</p>
-                        <p>Relevant Coursework: Big Data Technologies, Data Mining, Machine Learning, Cloud Computing,
-                            Data Visualization</p>
+                    <li class="education-item" data-aos="fade-up">
+                        <div class="education-content">
+                            <h3>Master's in Business Analytics</h3>
+                            <p class="school">California State University, East Bay</p>
+                            <p class="year">2023-2024</p>
+                            <div class="courses">
+                                <p>Big Data Technologies • Data Mining • Machine Learning • Cloud Computing • Data Visualization</p>
+                            </div>
+                        </div>
                     </li>
-                    <li class="education-item">
-                        <h3>Bachelor's in Mechanical and Robotics Engineering</h3>
-                        <p>University College of Engineering, Osmania University </p>
-                        <p>Relevant Coursework: Data Structures, Algorithms, Database Management Systems, Computer
-                            Networks</p>
+                    <li class="education-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="education-content">
+                            <h3>Bachelor's in Mechanical Engineering</h3>
+                            <p class="school">University College of Engineering, Osmania University</p>
+                            <div class="courses">
+                                <p>Data Structures • Algorithms • Database Management Systems • Computer Networks</p>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
